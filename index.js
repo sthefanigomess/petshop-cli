@@ -1,27 +1,78 @@
 const inquirer = require('inquirer');
-inquirer.registerPrompt("loop", require("inquirer-loop")(inquirer));
 
 const acoes = require("./settings/acoes");
-const cachorros = require('./database/cachorros.json');
 const perguntas = require('./settings/perguntas');
+const funcoes = require('./funcoes');
+
+function funcaoAindaPorDeinir(){
+    console.log("Você ainda não definiu essa função.");
+}
+
+funcoes.listar          = funcoes.listar            ? funcoes.listar          : funcaoAindaPorDeinir;
+funcoes.descrever       = funcoes.descrever         ? funcoes.descrever       : funcaoAindaPorDeinir;
+funcoes.adicionar       = funcoes.adicionar         ? funcoes.adicionar       : funcaoAindaPorDeinir;
+funcoes.atribuirServico = funcoes.atribuirServico   ? funcoes.atribuirServico : funcaoAindaPorDeinir;
+funcoes.vacinar         = funcoes.vacinar           ? funcoes.vacinar         : funcaoAindaPorDeinir;
+funcoes.remover         = funcoes.remover           ? funcoes.remover         : funcaoAindaPorDeinir;
 
 
-inquirer.prompt({type:"loop",name:"lalala",message:"o quê?", questions: perguntas})
-.then(
-    respostas => {
-        
-        switch(respostas.acao){
-            case acoes.LISTAR:
-                console.log("Listando...");
-                break
-            case acoes.ADICIONAR:
-                console.log("Adicionando...");
-                break;
-            case acoes.REMOVER:
-                console.log("Removendo...");
-                break;
-        }
+function tratarRespostas(respostas) {
+    switch(respostas.acao){
 
-        console.log(respostas);
+        case acoes.LISTAR:
+            funcoes.listar();
+        break
+
+
+        case acoes.DESCREVER:
+            funcoes.descrever(respostas.idCachorroParaDescrever);
+        break;
+
+
+        case acoes.ADICIONAR:
+            funcoes.adicionar(
+                respostas.nomeDoCachorro,
+                respostas.sexoDoCachorro,
+                respostas.cachorroCastrado=="Sim",
+                respostas.dataNascimentoDoCachorro,
+                respostas.pesoDoCachorro
+            );
+        break;
+
+
+        case acoes.VACINAR:
+            funcoes.vacinar(respostas.idDoCachorroVacina, respostas.vacina);
+        break;
+
+
+        case acoes.SERVICO:
+            funcoes.atribuirServico(respostas.idDoCachorroServico, respostas.servico);
+        break
+
+
+        case acoes.REMOVER:
+            if(respostas.confirmaRemocao){
+                funcoes.remover(respostas.idCachorroParaRemover)
+            }
+        break;
+
+        case acoes.SAIR:
+            process.exit(0);
+
     }
-)
+}
+
+function startInquire(){
+    inquirer.prompt(perguntas)
+    .then(
+        respostas => {
+            console.clear();
+            tratarRespostas(respostas);
+            startInquire();
+        }
+    )
+}
+
+console.clear();
+startInquire();
+
