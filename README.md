@@ -21,7 +21,7 @@ Para fazer o projeto funcionar localmente é necessário realizar os seguintes p
 
 - Entre na pasta do projeto
     ```shell
-    cd petshoip-cli
+    cd petshop-cli.git
     ```
 - Execute o npm install para instalação das dependências
     ```shell
