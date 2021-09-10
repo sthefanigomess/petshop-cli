@@ -1,0 +1,29 @@
+[
+    {
+        "id":1,
+        "nome":"João Grilo",
+        "castrado": true,
+        "dataDeNascimento": "2020-08-21",
+        "peso":10,
+        "vacinas":[],
+        "servicos":[]
+    },
+    {
+        "id":2,
+        "nome":"Mascavo",
+        "castrado": false,
+        "dataDeNascimento": "2015-08-10",
+        "peso":14,
+        "vacinas":[],
+        "servicos":[]
+    },
+    {
+        "id":3,
+        "nome":"Bronto",
+        "castrado": true,
+        "dataDeNascimento": "2016-10-19",
+        "peso":30,
+        "vacinas":[],
+        "servicos":[]
+    }
+]
