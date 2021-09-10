@@ -1,23 +1,21 @@
 const inquirer = require('inquirer');
 
-const ADICIONAR = "Adicionar";
-const LISTAR = "Listar";
-const REMOVER = "Remover";
 
+const acoes = require("./settings/acoes");
 const cachorros = require('./database/cachorros.json');
-const perguntas = require('./perguntas');
+const perguntas = require('./settings/perguntas');
 
 inquirer.prompt(perguntas).then(
     respostas => {
         
         switch(respostas.acao){
-            case LISTAR:
+            case acoes.LISTAR:
                 console.log("Listando...");
                 break
-            case ADICIONAR:
+            case acoes.ADICIONAR:
                 console.log("Adicionando...");
                 break;
-            case REMOVER:
+            case acoes.REMOVER:
                 console.log("Removendo...");
                 break;
         }
