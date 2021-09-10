@@ -71,5 +71,14 @@ module.exports = {
             data: new Date().toISOString().substr(0,10)
         });
         fs.writeFileSync('./database/cachorros.json',JSON.stringify(cachorros,null,4));
+    },
+    remover: (index) => {
+        if(index < 0 || index >= cachorros.length){
+            console.log("Cachorro inexistente.")
+            return;
+        }
+        let c = cachorros.splice(index,1)[0];
+        fs.writeFileSync('./database/cachorros.json',JSON.stringify(cachorros,null,4));
+        console.log(`${ c.sexo=="m" ? ("Cachorro " + c.nome + " excluído.") : ("Cadela " + c.nome + " excluída.")}`);
     }
 }
