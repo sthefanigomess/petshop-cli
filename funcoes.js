@@ -1,4 +1,5 @@
 const cachorros = require('./database/cachorros.json');
+const fs = require('fs');
 
 module.exports = {
     listar: function(){
@@ -32,5 +33,21 @@ module.exports = {
         console.log("Serviços")
         console.table(cachorro.servicos);
 
+    },
+    adicionar: (nome, sexo, castrado, dataDeNascimento, peso) => {
+
+        let cachorroNovo = {
+            nome,
+            sexo,
+            castrado,
+            dataDeNascimento,
+            peso,
+            vacinas:[],
+            servicos:[]
+        }
+
+        cachorros.push(cachorroNovo);
+
+        fs.writeFileSync('./database/cachorros.json',JSON.stringify(cachorros,null,4));
     }
 }
