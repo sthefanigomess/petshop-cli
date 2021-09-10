@@ -49,5 +49,16 @@ module.exports = {
         cachorros.push(cachorroNovo);
 
         fs.writeFileSync('./database/cachorros.json',JSON.stringify(cachorros,null,4));
+    },
+    vacinar: (index, vacina) => {
+        if(index < 0 || index >= cachorros.length){
+            console.log("Cachorro inexistente.")
+            return;
+        }
+        cachorros[index].vacinas.push({
+            nome: vacina,
+            data: new Date().toISOString().substr(0,10)
+        });
+        fs.writeFileSync('./database/cachorros.json',JSON.stringify(cachorros,null,4));
     }
 }
