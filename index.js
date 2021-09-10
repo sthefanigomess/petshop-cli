@@ -1,11 +1,13 @@
 const inquirer = require('inquirer');
-
+inquirer.registerPrompt("loop", require("inquirer-loop")(inquirer));
 
 const acoes = require("./settings/acoes");
 const cachorros = require('./database/cachorros.json');
 const perguntas = require('./settings/perguntas');
 
-inquirer.prompt(perguntas).then(
+
+inquirer.prompt({type:"loop",name:"lalala",message:"o quê?", questions: perguntas})
+.then(
     respostas => {
         
         switch(respostas.acao){
