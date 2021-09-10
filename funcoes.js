@@ -60,5 +60,16 @@ module.exports = {
             data: new Date().toISOString().substr(0,10)
         });
         fs.writeFileSync('./database/cachorros.json',JSON.stringify(cachorros,null,4));
+    },
+    atribuirServico: function (index, servico){
+        if(index < 0 || index >= cachorros.length){
+            console.log("Cachorro inexistente.")
+            return;
+        }
+        cachorros[index].servicos.push({
+            nome: servico,
+            data: new Date().toISOString().substr(0,10)
+        });
+        fs.writeFileSync('./database/cachorros.json',JSON.stringify(cachorros,null,4));
     }
 }
