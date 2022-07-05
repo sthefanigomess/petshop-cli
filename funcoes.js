@@ -4,6 +4,9 @@ function salvar(){}
 
 function buscar(id){}
 
-module.exports = {
+let funcoes = {
     
 }
+
+
+module.exports = funcoes;
