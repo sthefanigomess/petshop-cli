@@ -4,7 +4,7 @@ Elas já estão posicionadas no arquivo funcoes.js.
 As demais funções abaixo devem ser criadas como atributo do objeto
 literal que será exportado.
 
-☐ Implemente a função salvar.
+✔ Implemente a função salvar. @done(22-07-05 09:19)
   . Ela precisa salvar o conteúdo da constante cachorros no arquivo database/cachorros.json
   . Ela não precisa receber nenhum parâmetro nem retornar nada.
 
@@ -68,11 +68,13 @@ literal que será exportado.
     não exista um cachorro com o id passado.
 
 ☐  Crie uma função chamada remover
-  . Essa função deve remover um cachorro do array de serviços.
+  ✘ . Essa função deve remover um cachorro do array de serviços. @cancelled(22-07-05 09:23)
+  + Essa função deve remover um cachorro do array e salvar o array no arquivo.
   . Ela deve recber um único parâmetro
-    + id  (Id cachorro do cachorro a ser vacinado)
+    ✘ id  (Id cachorro do cachorro a ser vacinado) @cancelled(22-07-05 09:24)
+    + id  (Id cachorro do cachorro)
   . Essa função não deve retornar nada
   . Essa função deve imprimir uma mensagem "Cachorro inexistente"
-    não exista um cachorro com o id passado.
+    caso não exista um cachorro com o id passado.
       
     
