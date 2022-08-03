@@ -30,50 +30,43 @@ function descrever(id){
 function adicionar(informacoes){
     informacoes.vacinas = []
     informacoes.servicos = []
-    let ids = cachorros.map((cachorro) => cachorro.id)
-    let id = 1 + Math.max(...ids)
+    let ultimoId = cachorros[cachorros.length - 1].id
+    let id = 1 + ultimoId
     informacoes.id = id
     cachorros.push(informacoes)
     salvar()
 }
 
-function auxindice(id){
-    for (let [i, cachorro] of cachorros) {
-        if (id == cachorro.id){
-            
-            return i
-        }
-    }
-    return -1
-}
-
 function vacinar(id, vacina, data){
     let vax = {nome: vacina, data: data}
-    let indice = auxindice(id)
+    let indice = cachorros.findIndex((cachorro) => cachorro.id == id)
     if (indice != -1){
         cachorros[indice].vacinas.push(vax)
     }else{
         console.log('Cachorro inexistente')
     }
+    salvar()
 }
 
 function atribuirServico(id, servico, data){
     let sev = {nome: servico, data: data}
-    let indice = auxindice(id)
+    let indice = cachorros.findIndex((cachorro) => cachorro.id == id)
     if (indice != -1){
         cachorros[indice].servicos.push(sev)
     }else{
         console.log('Cachorro inexistente')
     }
+    salvar()
 }
 
 function remover(id){
-    let indice = auxindice(id)
+    let indice = cachorros.findIndex((cachorro) => cachorro.id == id)
     if (indice != -1){
         cachorros.splice(indice, 1)
     }else{
         console.log('Cachorro inexistente')
     }
+    salvar()
 }
 
 module.exports = {
